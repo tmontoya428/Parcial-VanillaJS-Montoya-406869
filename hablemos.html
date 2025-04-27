@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Hablemos</title>
+</head>
+<body>
+    <div class="card">
+    <section id="hablemos">
+        <p>Cada experto alguna vez fue principiante</p>
+        <p> ¿Me das la oportunidad de demostrar mi potencial?</p>
+        <h2>¡Hablemos!</h2> 
+        <form id="contact-form">
+          <textarea name="message" id="message" rows="5" placeholder="Escribe tu mensaje aquí..." class="chat" required></textarea>
+
+          <p><button type="submit" Class="link-card">Enviar</button></p>
+
+          <div class="imagen-container">
+            <img 
+                src="./assets/chat.jpg"
+                alt="imagen"
+                id="imagenPreview"
+                class="imagen"
+            />
+        </div>
+        
+        </form>
+        <p id="status-message"></p>
+        <a href="./index.html" class="link-card">Volver a portafolio</a>
+      </section>
+
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+      
+      <script>
+        
+        emailjs.init('oEOHEpnR9p4cIFstK');
+      
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+      
+          const message = document.getElementById('message').value;
+      
+          const templateParams = {
+            message: message,
+          };
+      
+          emailjs.send('service_7i55mzg', 'template_3msiwky', templateParams)
+            .then(function(response) {
+               document.getElementById('status-message').textContent = 'Mensaje enviado correctamente.';
+               document.getElementById('contact-form').reset();
+            }, function(error) {
+               document.getElementById('status-message').textContent = 'Error al enviar el mensaje.';
+            });
+        });
+      </script>
+      </div>
+</body>
+</html>
